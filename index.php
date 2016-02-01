@@ -48,7 +48,7 @@
 						<li><a href="#features">Food delivery</a></li>
 						<li><a href="#works">How it works</a></li>
 						<li><a href="#cities">Our cities</a></li>
-						<li><a href="signUp.php">Sign up</a></li>
+						<li><a href="signup.php">Sign up</a></li>
 					</ul>
 					<a class="mobile-nav-icon js--nav-icon"><i class="ion-navicon-round"></i></a>
 				</div>

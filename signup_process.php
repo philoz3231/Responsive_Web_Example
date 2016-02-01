@@ -26,17 +26,17 @@ $result = mysqli_query($conn, $sql);
 //같은 아이디의 유저가 있는 지 확인한다.
 if ($result->num_rows == 0) {
     $sql = "INSERT INTO user_tb (user_email, user_pwd, user_name, user_phone, user_im, user_type, user_login, user_token) VALUES ('" . $email . "', '" . $password . "', '" . $name . "', '" . $phone . "', '" . $image . "', '" . $user_type . "', '" . $user_login . "', '" . $token . "')";
-    mysqli_query($conn, $sql);
+    $result= mysqli_query($conn, $sql);
 
     //가입된 유저의 토큰을 세션에 저장한다
-    $sql = "SELECT token from user_tb WHERE user_email='".$email."'";
+    $sql = "SELECT user_token from user_tb WHERE user_email='".$email."'";
     $result = mysqli_query($conn, $sql);
 
     session_start();
     $row = mysqli_fetch_row($result);
-    $_SESSION['token'] = $row[8];
+    $_SESSION['token'] = $row[0];
 
-    echo "$row[8] hi";
+    echo "$row[0] hi";
     //header('Location: http://localhost');
 
 } else {
