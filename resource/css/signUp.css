@@ -1,0 +1,54 @@
+
+/* ------------------------------------------------------ */
+/* SIGN UP */
+/* ------------------------------------------------------ */
+
+.header-page {
+	background-image: linear-gradient(#555, #555);
+	height: 60px;
+	border: 0;
+
+}
+
+.logo-page {
+	height: 50px;
+    width: auto;
+    float: left;
+    margin: 5px 0;
+}
+
+.nav-page{
+    float: right;
+    list-style: none;
+    margin-top: 20px;
+}
+
+
+/* REGISTER FORM*/
+
+.section-signup {padding: 200px;}
+
+.signup-form{
+    width: 60%;
+    margin: 0 auto;
+}
+
+input[type=id],
+input[type=password],
+input[type=text],
+input[type=email] {
+    width: 100%;
+    padding: 7px;
+	margin: 5px;
+    border-radius: 3px;
+    border: 1px solid #d8d8d8;
+}
+
+input[type=radio] {margin: 10px 5px 10px 0;}
+
+.id-row {}
+
+.id-btn {
+	display: block;
+	float: right;
+}
