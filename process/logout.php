@@ -10,7 +10,11 @@ session_start();
 
 //현재 세션에 저장된 정보가 있는지 확인한다.
 
-if(!session_destroy()){
-    header("location:../login.php");
+if(isset($_SESSION['user_key'])){
+    session_destroy();
+    echo "<script>
+            alert('로그아웃 되었습니다.');
+            location.href='../index.php';
+            </script>";
 }
 ?>

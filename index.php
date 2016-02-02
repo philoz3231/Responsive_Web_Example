@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <?php
-include_once('process/session.php');
+session_start();
+if(!isset($_SESSION['session_check']) || isset($_SESSION['user_key'])){
+	require_once('process/session.php');
+}
 ?>
 <html lang="en">
 	<head>
