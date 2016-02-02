@@ -1,7 +1,7 @@
 <?php
 
-require("config/config.php");
-require("lib/db.php");
+require("../config/config.php");
+require("../lib/db.php");
 $conn = db_init($config["host"], $config["duser"], $config["dpw"], $config["dname"]);
 
 $email = mysqli_real_escape_string($conn, $_POST['email']);
@@ -29,20 +29,23 @@ if ($result->num_rows == 0) {
     $result= mysqli_query($conn, $sql);
 
     //가입된 유저의 토큰을 세션에 저장한다
-    $sql = "SELECT user_token from user_tb WHERE user_email='".$email."'";
+    $sql = "SELECT userKey from user_tb WHERE user_email='".$email."'";
     $result = mysqli_query($conn, $sql);
-
     session_start();
     $row = mysqli_fetch_row($result);
-    $_SESSION['token'] = $row[0];
+    $_SESSION['user_key'] = $row[0];
 
-    echo "$row[0] hi";
-    //header('Location: http://localhost');
+    echo "<script>
+            alert('회원가입에 성공하셨습니다');
+            location.href='../mymakebuy.html';
+            </script>";
 
 } else {
-    echo "중복된 아이디입니다";
-   // header('Location: http://localhost');
-}
+    echo "<script>
+                alert('중복된 아이디입니다');
+                location.href='../signup.php';
+           </script>";
 
+}
 
 ?>

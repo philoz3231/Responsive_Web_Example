@@ -7,8 +7,8 @@
  */
 
 
-require("config/config.php");
-require("lib/db.php");
+require("../config/config.php");
+require("../lib/db.php");
 $conn = db_init($config["host"], $config["duser"], $config["dpw"], $config["dname"]);
 
 $email = mysqli_real_escape_string($conn, $_POST['email']);
@@ -21,12 +21,16 @@ $result = mysqli_query($conn, $sql);
 if ($result->num_rows == 0) {
     echo
     "<script>
-alert('사용 가능한 아이디입니다.');
-location.href='./signup.php';
-</script>";
-}
-else{
-    echo "<script> alert('이미 사용 중인 아이디입니다.');</script>";
+        alert('사용 가능한 아이디입니다.');
+        //email field 채워넣기 필요
+       location.href='../signup.php';
+        </script>";
+} else {
+    echo
+    "<script>
+        alert('이미 사용 중인 아이디입니다.');
+        location.href='../signup.php';
+    </script>";
     exit;
 }
 

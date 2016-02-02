@@ -10,7 +10,7 @@
 		<link rel="stylesheet" type="text/css" href="vendors/css/ionicons.min.css">
 		<link rel="stylesheet" type="text/css" href="vendors/css/animate.css">
 		<link rel="stylesheet" type="text/css" href="resource/css/style.css">
-		<link rel="stylesheet" type="text/css" href="resource/css/signUp.css">
+		<link rel="stylesheet" type="text/css" href="resource/css/signup.css">
 		<link rel="stylesheet" type="text/css" href="resource/css/queries.css">
 		<link href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,300italic" rel="stylesheet" type="text/css">
 		<title>Omnifood</title>
@@ -49,7 +49,7 @@
 						<li><a href="#features">Food delivery</a></li>
 						<li><a href="#works">How it works</a></li>
 						<li><a href="#cities">Our cities</a></li>
-						<li><a href="/signUp.html">Sign up</a></li>
+						<li><a href="/signup.php">Sign up</a></li>
 					</ul>
 					<a class="mobile-nav-icon js--nav-icon"><i class="ion-navicon-round"></i></a>
 				</div>
@@ -62,7 +62,7 @@
 			</div>
 
 			<div class="row">
-				<form method="post" action="signup_process.php" class="signup-form">
+				<form method="post" action="process/signup_process.php" class="signup-form" name="signupForm">
 					<div class="row">
 						<div class="id-row">
 							<div class="col span-1-of-3">
@@ -73,7 +73,15 @@
 							</div>
 						</div>
 						<div>
-							<input type="button" value="아이디 중복확인" class="id-btn">
+							<input type="button" value="아이디 중복확인" class="id-btn" onClick="id_check(signupForm)">
+							<script>
+								function id_check(signupForm){
+									var writtenEmail = signupForm.email.value;
+									signupForm.method = "post";
+									signupForm.action = "process/checkEmail.php";
+									signupForm.submit();
+								}
+							</script>
 						</div>
 					</div>
 					<div class="row">
