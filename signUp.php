@@ -60,7 +60,55 @@
 			<div class="row">
 				<h2>회원가입</h2>
 			</div>
+            
+            <div class="image-upload">
+                <form method="post" enctype="multipart/form-data">
+                <input type="file" name="image">
+                <input type="submit" name="submit" value="프로필업로드">    
+                
+                </form>
+            </div>
+            <?php
+                if(isset($_POST['submit']))
+                {
+                    if(getimagesize($_FILES['image']['tmp_name']) == FALSE){
+						echo "Please select an image";
+					}
+					else{
+						$image = addslashes($_FILES['image']['tmp_name']);
+						$name = addslashes($_FILES['image']['name']);
+						$image= file_get_contents($image);
+						$image = base64_encode($image);
+						saveimage($image);
+					}
+                }
+				displayimage();
+            	function saveimage($image){
+					$conn = mysqli_connect("127.0.0.1:3000", "root", "asdf1234");
+					mysqli_select_db($conn, "madebuydb");
 
+					$query = "UPDATE user_tb SET user_im ='$image' WHERE userKey = 2";
+					$result = mysqli_query($conn, $query);
+					if($result){
+						echo "Image uploaded";
+					}
+					else{
+						echo "Image not uploaded";
+					}
+				}
+				function displayimage(){
+					$conn = mysqli_connect("127.0.0.1:3000", "root", "asdf1234");
+					mysqli_select_db($conn, "madebuydb");
+
+					$query = "select user_im from user_tb where userKey = 2";
+					$result = mysqli_query($conn, $query);
+					while($row = mysqli_fetch_assoc($result)){
+						echo '<img height="300" width= "300" src="data:image;base64,'.$row['user_im'].' ">';
+					}
+					mysqli_close($conn);
+				}
+            ?>
+            
 			<div class="row">
 				<form method="post" action="process/signup_process.php" class="signup-form" name="signupForm">
 					<div class="row">
