@@ -12,7 +12,7 @@ session_start();
 //현재 세션에 저장된 정보가 있는지 확인한다.
 
 if(isset($_SESSION['user_key'])) {
-    header("Location: http://localhost/mymakebuy.html");
+    header("Location: http://localhost/mymakebuy.php");
 }
 else{
     $_SESSION['session_check'] = 'checked';

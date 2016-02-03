@@ -1,3 +1,7 @@
+<?php
+require_once('process/functions.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,62 +65,32 @@
     <div class="row">
         <h2>회원가입</h2>
     </div>
-    <div class="image-upload">
-        <div class="user-image">
-        <?php
-            require("config/config.php");
-            require("lib/db.php");
-            $conn = db_init($config["host"], $config["duser"], $config["dpw"], $config["dname"]);
-            
-             displayimage($conn);
-
-        function displayimage($conn){
-        $query = "select user_im from user_tb where userKey = 2";
-        $result = mysqli_query($conn, $query);
-        while ($row = mysqli_fetch_assoc($result)) {
-            echo '<img height="200" width= "150" src="data:image;base64,' . $row['user_im'] . ' ">';
-        }
-        
-        }
-        ?>
-        </div>
-        <form method="post" enctype="multipart/form-data" class="upload-unit">
-            <input type="file" name="image">
-            <input type="submit" name="submit" value="프로필업로드" id="upload-button">
-        </form>
-    </div>
-    <?php
-    if (isset($_POST['submit'])) {
-        if (getimagesize($_FILES['image']['tmp_name']) == FALSE) {
-            echo "Please select an image";
-        } else {
-            $image = addslashes($_FILES['image']['tmp_name']);
-            $name = addslashes($_FILES['image']['name']);
-            $image = file_get_contents($image);
-            $image = base64_encode($image);
-            saveimage($image, $conn);
-        }
-    }
-    
-    function saveimage($image, $conn)
-    {
-        $query = "UPDATE user_tb SET user_im ='$image' WHERE userKey = 2";
-        $result = mysqli_query($conn, $query);
-        /*
-        if ($result) {
-            echo "";
-        } else {
-            echo "";
-        } */
-    }
-    ?>
-
     <div class="row">
-        <form method="post" action="process/signup_process.php" class="signup-form" name="signupForm">
+        <form method="post" action="process/signup_process.php" class="signup-form" name="signupForm" enctype="multipart/form-data" accept="image/jpg, image/jpeg, image/png"/>
             <div class="row">
                 <div class="id-row">
                     <div class="col span-1-of-3">
                         <label for="email">이메일주소</label>
+                        <input type="file" name="image" onchange="displayImage(this);" />
+                        <img id="profile" src="#" alt="profile image" />
+                        <!-- display current image -->
+                        <script>
+                        function displayImage(input){
+                            if(input.files && input.files[0]){
+                                var reader = new FileReader();
+
+                                reader.onload = function (e){
+                                    $('#profile')
+                                        .attr('src', e.target.result)
+                                        .width(150)
+                                        .height(200);
+                                };
+
+                                reader.readAsDataURL(input.files[0]);
+                            }
+                        }
+                        </script>
+
                     </div>
                     <div class="col span-2-of-3">
                         <input type="email" name="email" id="email" placeholder="이메일 주소" required>

@@ -1,3 +1,8 @@
+<?php
+session_start();
+require_once('process/functions.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -44,6 +49,9 @@
 				<div class="row">
 					<img src="resource/img/logo-white.png" alt="Omnifood logo" class="logo">
 					<img src="resource/img/logo.png" alt="Omnifood logo" class="logo-black">
+                    <?php
+                        displayimage($_SESSION['user_key'],$conn);
+                    ?>
 					<ul class="main-nav js--main-nav">
 						<li><a href="#features">프로젝트 등록</a></li>
 						<li><a href="#works">프로젝트 찾기</a></li>
