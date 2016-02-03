@@ -4,6 +4,14 @@ require("../config/config.php");
 require("../lib/db.php");
 $conn = db_init($config["host"], $config["duser"], $config["dpw"], $config["dname"]);
 
+// Check connection
+if (mysqli_connect_errno())
+{
+    echo "Failed to connect to MySQL: " . mysqli_connect_error();
+    exit();
+}
+
+
 $email = mysqli_real_escape_string($conn, $_POST['email']);
 $password = mysqli_real_escape_string($conn, $_POST['password']);
 $pwd_confirm = mysqli_real_escape_string($conn, $_POST['pwd-confirm']);
@@ -18,10 +26,15 @@ $salt1 = "mb@";
 $salt2 = "gh**";
 $token = md5("$salt1$password$salt2");
 
-
-
 $sql = "SELECT user_email FROM user_tb WHERE user_email='" . $email . "'";
-$result = mysqli_query($conn, $sql);
+mysqli_query($conn, $sql);
+
+// Perform a query, check for error
+if (!mysqli_query($con,$sql))
+{
+    echo("Error description: " . mysqli_error($con));
+    exit();
+}
 
 //같은 아이디의 유저가 있는 지 확인한다.
 if ($result->num_rows == 0) {
@@ -48,4 +61,5 @@ if ($result->num_rows == 0) {
 
 }
 
+mysqli_close($conn);
 ?>

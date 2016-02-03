@@ -11,9 +11,14 @@ require("../config/config.php");
 require("../lib/db.php");
 $conn = db_init($config["host"], $config["duser"], $config["dpw"], $config["dname"]);
 
+// Check connection
+if (mysqli_connect_errno())
+{
+    echo "Failed to connect to MySQL: " . mysqli_connect_error();
+    exit();
+}
+
 $email = mysqli_real_escape_string($conn, $_POST['email']);
-
-
 $sql = "SELECT user_email FROM user_tb WHERE user_email='" . $email . "'";
 $result = mysqli_query($conn, $sql);
 

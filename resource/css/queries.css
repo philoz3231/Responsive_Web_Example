@@ -45,6 +45,10 @@
 	.contact-form { width: 80%; }
 	
 	.signup-form {width: 80%; }
+    
+    .image-upload {width: 10%;}
+    #upload-button{font-size: 90%;}
+    input[type=file]{font-size: 80%;}
 }
 
 

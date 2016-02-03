@@ -2,7 +2,14 @@
 
 require("../config/config.php");
 require("../lib/db.php");
-$conn = db_init($config["host"], $config["duser"], $config["dpw"], $config["dname"]);
+$conn = db_init($config["host"], $config["duser"], $config["dpw"], $config["dname"]) ;
+
+// Check connection
+if (mysqli_connect_errno())
+{
+    echo "Failed to connect to MySQL: " . mysqli_connect_error();
+    exit();
+}
 
 $email = mysqli_real_escape_string($conn, $_POST['email']);
 $password = mysqli_real_escape_string($conn, $_POST['password']);
