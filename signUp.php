@@ -66,16 +66,16 @@ require_once('process/functions.php');
         <h2>회원가입</h2>
     </div>
     <div class="row">
-        <form method="post" action="process/signup_process.php" class="signup-form" name="signupForm" enctype="multipart/form-data" accept="image/jpg, image/jpeg, image/png"/>
+        <form method="post" action="process/signup_process.php" class="signup-form" name="signupForm" enctype="multipart/form-data" />
             <div class="row">
                 <div class="id-row">
                     <div class="col span-1-of-3">
                         <label for="email">이메일주소</label>
-                        <input type="file" name="image" onchange="displayImage(this);" />
+                        <input type="file" name="image" onchange="displayCurrentImage(this);" />
                         <img id="profile" src="#" alt="profile image" />
                         <!-- display current image -->
                         <script>
-                        function displayImage(input){
+                        function displayCurrentImage(input){
                             if(input.files && input.files[0]){
                                 var reader = new FileReader();
 

@@ -60,7 +60,12 @@ if(!isset($_SESSION['session_check']) || isset($_SESSION['user_key'])){
 			</nav>
 			<div class="hero-text-box">
 				<h1>Goodbye junk food. <br> Hello super healthy meals.</h1>
-				<a class="btn btn-full js--scroll-to-plan" href="#">I'm hungry</a>
+				<a class="btn btn-full js--scroll-to-plan" href="#" onclick="open1()">I'm hungry</a>
+				<script>
+					function open1(){
+						window.open('index.php', '_blank', 'width=200, height=200, resizable=yes');
+					}
+				</script>
 				<a class="btn btn-ghost js--scroll-to-start" href="#">Show me more</a>
 			</div>
 
