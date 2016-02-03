@@ -28,6 +28,7 @@
 
 .section-signup {padding: 200px;}
 
+
 .signup-form{
     width: 60%;
     margin: 0 auto;
@@ -46,9 +47,24 @@ input[type=email] {
 
 input[type=radio] {margin: 10px 5px 10px 0;}
 
-.id-row {}
 
 .id-btn {
 	display: block;
-	float: right;
+	float: left;
 }
+
+/* IMAGE UPLOAD */
+.image-upload {
+    width: 200px;
+    height: auto;
+    float:right;
+}
+
+input[type=file] {display:inline-block; margin: 10px;font-size:80%;}
+
+#upload-button {
+    padding: 5px 15px;
+    font-size: 80%;
+}
+
+.user-image {text-align: center;}
