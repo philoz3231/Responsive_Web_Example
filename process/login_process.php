@@ -1,4 +1,19 @@
 <?php
+session_start();
+//로그인이 되어있는 경우
+if(isset($_SESSION['user_key'])){
+    header("Location: http://localhost/mymakebuy.php");
+    exit();
+}
+//로그인을 시도하는 경우
+else if(isset($_POST['email'])){
+
+}
+//주소창으로 접근하는경우
+else{
+    header("Location: http://localhost/503.html");
+    exit();
+}
 
 require("../config/config.php");
 require("../lib/db.php");
@@ -32,12 +47,14 @@ if ($result->num_rows > 0) {
     $row = mysqli_fetch_row($result);
     $_SESSION['user_key'] = $row[0];
 
+    mysqli_close($conn);
     echo "<script>
             alert('로그인에 성공하셨습니다');
             location.href='../mymakebuy.php';
             </script>";
 
 } else {
+    mysqli_close($conn);
     echo "<script>
                 alert('아이디나 비밀번호를 잘못 입력했습니다');
                 location.href='../login.php';

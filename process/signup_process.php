@@ -1,4 +1,19 @@
 <?php
+session_start();
+//로그인이 되어있는 경우
+if(isset($_SESSION['user_key'])){
+    header("Location: http://localhost/mymakebuy.php");
+    exit();
+}
+//회원가입을 시도하는 경우
+else if(isset($_POST['email'])){
+
+}
+//주소창으로 접근하는경우
+else{
+    header("Location: http://localhost/503.html");
+    exit();
+}
 
 require("../config/config.php");
 require("../lib/db.php");
@@ -11,8 +26,9 @@ if (mysqli_connect_errno())
     exit();
 }
 
-// edit image file
-if (getimagesize($_FILES['image']['tmp_name']) == FALSE) {
+//leave it for checking image size
+/*
+if ( getimagesize($_FILES['image']['tmp_name']) == FALSE) {
     echo "Please select an image";
 } else {
     $image = addslashes($_FILES['image']['tmp_name']);
@@ -20,6 +36,11 @@ if (getimagesize($_FILES['image']['tmp_name']) == FALSE) {
     $image = file_get_contents($image);
     $image = base64_encode($image);
 }
+*/
+
+$image = addslashes($_FILES['image']['tmp_name']);
+$image = file_get_contents($image);
+$image = base64_encode($image);
 
 $email = mysqli_real_escape_string($conn, $_POST['email']);
 $password = mysqli_real_escape_string($conn, $_POST['password']);

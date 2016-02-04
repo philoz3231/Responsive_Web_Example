@@ -1,3 +1,12 @@
+<?php
+/*
+ * check session
+ */
+session_start();
+if(isset($_SESSION['user_key'])){
+    header("Location: http://localhost/mymakebuy.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -160,3 +169,4 @@
 </body>
 
 </html>
+

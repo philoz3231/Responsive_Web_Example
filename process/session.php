@@ -4,6 +4,7 @@
  * User: ensemble lab
  * Date: 2016-02-02
  * Time: 오후 3:23
+ * Because of redirection problem, don't be used now
  */
 
 session_start();

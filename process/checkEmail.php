@@ -24,6 +24,7 @@ $result = mysqli_query($conn, $sql);
 
 //같은 아이디의 유저가 있는 지 확인한다.
 if ($result->num_rows == 0) {
+    mysqli_close($conn);
     echo
     "<script>
         alert('사용 가능한 아이디입니다.');
@@ -31,6 +32,7 @@ if ($result->num_rows == 0) {
        location.href='../signup.php';
         </script>";
 } else {
+    mysqli_close($conn);
     echo
     "<script>
         alert('이미 사용 중인 아이디입니다.');

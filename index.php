@@ -1,10 +1,13 @@
-<!DOCTYPE html>
 <?php
+/*
+ * check session
+ */
 session_start();
-if(!isset($_SESSION['session_check']) || isset($_SESSION['user_key'])){
-	require_once('process/session.php');
+if(isset($_SESSION['user_key'])){
+	header("Location: http://localhost/mymakebuy.php");
 }
 ?>
+<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8">

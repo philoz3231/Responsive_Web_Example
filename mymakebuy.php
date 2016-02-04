@@ -1,5 +1,12 @@
 <?php
+/*
+ * check session
+ */
 session_start();
+if(!isset($_SESSION['user_key'])){
+	header("Location: http://localhost/index.php");
+}
+//load functions
 require_once('process/functions.php');
 ?>
 

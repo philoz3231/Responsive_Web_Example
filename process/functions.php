@@ -20,18 +20,14 @@ if (mysqli_connect_errno())
     exit();
 }
 
-
-
 function displayimage($userKey, $conn)
 {
-
     $query = "select user_im from user_tb where userKey = '". $userKey . "' ";
     $result = mysqli_query($conn, $query);
     if ($row = mysqli_fetch_assoc($result)) {
         echo '<img height="200" width= "150" src="data:image;base64,' . $row['user_im'] . ' ">';
     }
-
-
+    mysqli_close($conn);
 }
 
 
