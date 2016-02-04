@@ -130,6 +130,7 @@ require_once('process/functions.php');
                 <div class="col span-2-of-3">
                     <input type="password" name="pwd-confirm" id="pwd-confirm" placeholder="비밀번호 확인" required>
                 </div>
+                <div id="pwdCheck_text"></div>
             </div>
             <div class="row">
                 <div class="col span-1-of-3">
@@ -218,6 +219,7 @@ require_once('process/functions.php');
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
 <script src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://cdn.jsdelivr.net/selectivizr/1.0.3b/selectivizr.min.js"></script>

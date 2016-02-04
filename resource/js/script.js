@@ -68,7 +68,6 @@ $(document).ready(function () {
 
 
 	/* Mobile navigation */
-
 	$('.js--nav-icon').click(function () {
 		var nav = $('.js--main-nav');
 		var icon = $('.js--nav-icon i');
@@ -84,6 +83,16 @@ $(document).ready(function () {
 		}
 		
 	});
+
+	/* confirm password */
+	$('#pwd-confirm').on('blur', function(event){
+		if( $('#password')[0].value != $('#pwd-confirm')[0].value){
+			$('#pwdCheck_text').replaceWith('<div id="pwdCheck_text" style="color:red">비밀번호가 틀립니다</div>');
+		}else{
+			$('#pwdCheck_text').replaceWith('<div id="pwdCheck_text" style="color:green">비밀번호 확인되었습니다</div>');
+		}
+	});
+
 
 });
 
