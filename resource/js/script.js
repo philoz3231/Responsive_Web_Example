@@ -87,13 +87,54 @@ $(document).ready(function () {
 	/* confirm password */
 	$('#pwd-confirm').on('blur', function(event){
 		if( $('#password')[0].value != $('#pwd-confirm')[0].value){
-			$('#pwdCheck_text').replaceWith('<div id="pwdCheck_text" style="color:red">비밀번호가 틀립니다</div>');
+			$('#pwdCheck_text').replaceWith('<div id="pwdCheck_text" style="color:red"><h4>비밀번호가 틀립니다<h4/></div>');
 		}else{
-			$('#pwdCheck_text').replaceWith('<div id="pwdCheck_text" style="color:green">비밀번호 확인되었습니다</div>');
+			$('#pwdCheck_text').replaceWith('<div id="pwdCheck_text" style="color:green"><h4>비밀번호가 확인되었습니다<h4/></div>');
 		}
 	});
 
+	/* check id */
+	$('#id-checker').on('click', function(event){
+		$('#id-checker').attr('clicked', 'clicked');
+		$.post('process/checkEmail.php', {email: $('#email')[0].value})
+			.done(function(data){
+			alert(data);
+		});
+	});
 
+	/* check required form */
+	$('form').submit(function(event){
+		var id_check = '';
+		var client_type = false;
+		var freelancer_type = false;
+		var information = false;
+		var terms = false;
+
+		id_check = $('#id-checker').attr('clicked');
+		client_type = $('#client-type').is(':checked');
+		freelancer_type = $('#freelancer-type').is(':checked');
+		information = $('#information').is(':checked');
+		terms = $('#terms').is(':checked');
+
+		if(id_check != 'clicked'){
+			alert('아이디 중복체크를 해주세요');
+			return false;
+		};
+		if(client_type == false && freelancer_type == false){
+			alert('가입 유형을 선택해주세요');
+			return false;
+		};
+		if(information == false || terms == false){
+			alert('이용약관과 개인정보 취급방침에 동의해야 합니다');
+			return false;
+		};
+
+		if( $('#password')[0].value != $('#pwd-confirm')[0].value){
+			alert('비밀번호를 확인해주세요');
+			return false;
+		}
+
+	})
 });
 
 

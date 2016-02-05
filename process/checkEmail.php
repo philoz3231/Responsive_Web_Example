@@ -25,19 +25,15 @@ $result = mysqli_query($conn, $sql);
 //같은 아이디의 유저가 있는 지 확인한다.
 if ($result->num_rows == 0) {
     mysqli_close($conn);
-    echo
-    "<script>
-        alert('사용 가능한 아이디입니다.');
-        //email field 채워넣기 필요
-       location.href='../signup.php';
-        </script>";
+    echo "사용 가능한 아이디입니다";
+
 } else {
     mysqli_close($conn);
-    echo
-    "<script>
+    echo "이미 사용 중인 아이디입니다";
+    /* "<script>
         alert('이미 사용 중인 아이디입니다.');
         location.href='../signup.php';
-    </script>";
+    </script>"; */
     exit;
 }
 

@@ -3,8 +3,8 @@
  * check session
  */
 session_start();
-if(isset($_SESSION['user_key'])){
-	header("Location: http://localhost/mymakebuy.php");
+if (isset($_SESSION['user_key'])) {
+    header("Location: http://localhost/mymakebuy.php");
 }
 //load functions
 require_once('process/functions.php');
@@ -73,20 +73,21 @@ require_once('process/functions.php');
         <h2>회원가입</h2>
     </div>
     <div class="row">
-        <form method="post" action="process/signup_process.php" class="signup-form" name="signupForm" enctype="multipart/form-data" />
-            <div class="row">
-                <div class="id-row">
-                    <div class="col span-1-of-3">
-                        <label for="email">이메일주소</label>
-                        <input type="file" name="image" onchange="displayCurrentImage(this);" />
-                        <img id="profile" src="#" alt="profile image" />
-                        <!-- display current image -->
-                        <script>
-                        function displayCurrentImage(input){
-                            if(input.files && input.files[0]){
+        <form method="post" action="process/signup_process.php" class="signup-form" name="signupForm"
+              enctype="multipart/form-data"/>
+        <div class="row">
+            <div class="id-row">
+                <div class="col span-1-of-3">
+                    <label for="email">이메일주소</label>
+                    <input type="file" name="image" onchange="displayCurrentImage(this);"/>
+                    <img id="profile" src="#" alt="profile image"/>
+                    <!-- display current image -->
+                    <script>
+                        function displayCurrentImage(input) {
+                            if (input.files && input.files[0]) {
                                 var reader = new FileReader();
 
-                                reader.onload = function (e){
+                                reader.onload = function (e) {
                                     $('#profile')
                                         .attr('src', e.target.result)
                                         .width(150)
@@ -96,95 +97,88 @@ require_once('process/functions.php');
                                 reader.readAsDataURL(input.files[0]);
                             }
                         }
-                        </script>
-
-                    </div>
-                    <div class="col span-2-of-3">
-                        <input type="email" name="email" id="email" placeholder="이메일 주소" required>
-                    </div>
-                </div>
-                <div>
-                    <input type="button" value="아이디 중복확인" class="id-btn" onClick="id_check(signupForm)">
-                    <script>
-                        function id_check(signupForm) {
-                            var writtenEmail = signupForm.email.value;
-                            signupForm.method = "post";
-                            signupForm.action = "process/checkEmail.php";
-                            signupForm.submit();
-                        }
                     </script>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col span-1-of-3">
-                    <label for="password">비밀번호</label>
-                </div>
-                <div class="col span-2-of-3">
-                    <input type="password" name="password" id="password" placeholder="비밀번호" required>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col span-1-of-3">
-                    <label for="pwd-confirm">비밀번호 확인</label>
-                </div>
-                <div class="col span-2-of-3">
-                    <input type="password" name="pwd-confirm" id="pwd-confirm" placeholder="비밀번호 확인" required>
-                </div>
-                <div id="pwdCheck_text"></div>
-            </div>
-            <div class="row">
-                <div class="col span-1-of-3">
-                    <label for="name">이름</label>
-                </div>
-                <div class="col span-2-of-3">
-                    <input type="text" name="name" id="name" placeholder="이름" required>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col span-1-of-3">
-                    <label for="phone">휴대전화</label>
-                </div>
-                <div class="col span-2-of-3">
-                    <input type="text" name="phone" id="phone" placeholder="-를 제외하고 입력" required>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col span-1-of-3">
-                    <label for="user-type">가입유형</label>
-                </div>
-                <div class="col span-2-of-3">
-                    <input type="radio" name="user-type" id="client-type" value="client"/>
-                    <label for="client-type">클라이언트</label>
-                    <input type="radio" name="user-type" id="freelancer-type" value="freelancer"/>
-                    <label for="freelancer-type">프리랜서</label>
-                </div>
-            </div>
 
-            <div class="row">
-                <div class="col span-1-of-3">
-                    <label>&nbsp;</label>
                 </div>
                 <div class="col span-2-of-3">
-                    <input type="checkbox" name="terms" id="terms" checked>이용약관에 동의합니다
+                    <input type="email" name="email" id="email" placeholder="이메일 주소" required>
                 </div>
             </div>
-            <div class="row">
-                <div class="col span-1-of-3">
-                    <label>&nbsp;</label>
-                </div>
-                <div class="col span-2-of-3">
-                    <input type="checkbox" name="information" id="information" checked>개인정보취급방침에 동의합니다
-                </div>
+            <div>
+                <input type="button" value="아이디 중복확인" class="id-btn" id="id-checker" clicked="">
             </div>
+        </div>
+        <div class="row">
+            <div class="col span-1-of-3">
+                <label for="password">비밀번호</label>
+            </div>
+            <div class="col span-2-of-3">
+                <input type="password" name="password" id="password" placeholder="비밀번호" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col span-1-of-3">
+                <label for="pwd-confirm">비밀번호 확인</label>
+            </div>
+            <div class="col span-2-of-3">
+                <input type="password" name="pwd-confirm" id="pwd-confirm" placeholder="비밀번호 확인" required>
+            </div>
+            <div id="pwdCheck_text"></div>
+        </div>
+        <div class="row">
+            <div class="col span-1-of-3">
+                <label for="name">이름</label>
+            </div>
+            <div class="col span-2-of-3">
+                <input type="text" name="name" id="name" placeholder="이름" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col span-1-of-3">
+                <label for="phone">휴대전화</label>
+            </div>
+            <div class="col span-2-of-3">
+                <input type="text" name="phone" id="phone" placeholder="-를 제외하고 입력" required>
+            </div>
+        </div>
 
-            <div class="row">
-                <div class="col span-1-of-3">
-                    <label>&nbsp;</label>
-                </div>
-                <div class="col span-2-of-3">
-                    <input type="submit" value="회원가입">
-                </div>
+        <div class="row">
+            <div class="col span-1-of-3">
+                <label for="user-type">가입유형</label>
             </div>
+            <div class="col span-2-of-3">
+                <input type="radio" name="user-type" id="client-type" value="client"/>
+                <label for="client-type">클라이언트</label>
+                <input type="radio" name="user-type" id="freelancer-type" value="freelancer"/>
+                <label for="freelancer-type">프리랜서</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col span-1-of-3">
+                <label>&nbsp;</label>
+            </div>
+            <div class="col span-2-of-3">
+                <input type="checkbox" name="terms" id="terms" checked>이용약관에 동의합니다
+            </div>
+        </div>
+        <div class="row">
+            <div class="col span-1-of-3">
+                <label>&nbsp;</label>
+            </div>
+            <div class="col span-2-of-3">
+                <input type="checkbox" name="information" id="information" checked>개인정보취급방침에 동의합니다
+            </div>
+        </div>
+        <div class="row">
+            <div class="col span-1-of-3">
+                <label>&nbsp;</label>
+            </div>
+            <div class="col span-2-of-3">
+                <input type="submit" value="회원가입" id="signup-button">
+            </div>
+            <div id="register-check"><p></p></div>
+        </div>
         </form>
     </div>
 </section>

@@ -57,11 +57,11 @@ $salt2 = "gh**";
 $token = md5("$salt1$password$salt2");
 
 $sql = "SELECT user_email FROM user_tb WHERE user_email='" . $email . "'";
-mysqli_query($conn, $sql);
+$result = mysqli_query($conn, $sql);
 
 
 //같은 아이디의 유저가 있는 지 확인한다.
-if ($result->num_rows == 0) {
+if ($result->num_rows > 0) {
     $sql = "INSERT INTO user_tb (user_email, user_pwd, user_name, user_phone, user_im, user_type, user_login, user_token) VALUES ('" . $email . "', '" . $password . "', '" . $name . "', '" . $phone . "', '" . $image . "', '" . $user_type . "', '" . $user_login . "', '" . $token . "')";
     $result= mysqli_query($conn, $sql);
 
